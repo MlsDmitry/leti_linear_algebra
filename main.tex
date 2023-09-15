@@ -1,0 +1,214 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[T2A,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsmath}
+\usepackage{titlesec}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{physics}
+\usepackage{amsthm}
+
+\newtheorem{definition}{Определение}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \textbf{Курс аналитической геометрии и линейной алгебры}
+    \end{center}
+\end{titlepage}
+
+
+\chapter{Матрица}
+
+\begin{definition}
+    Матрица размера $m \times n$ называется совокупность n * m элементов некоторого множества, записанных в виде прямоугольной таблицы, содержащей m строк и n столбцов.
+\end{definition}
+
+\begin{itemize}
+
+    \item Если элементами матрицы являются числа, то матрица называется числовой.
+        $$
+        \begin{bmatrix}
+            a_{11} & a_{12} & a_{1n} \\
+            a_{21} & a_{22} & a_{2n} \\
+            a_{31} & a_{32} & a_{3n} \\
+        \end{bmatrix}
+        $$
+
+
+    \item Матрицу обозначают большими латинскими буквами A, B, C. Элементы матрицы малыми буквами, снабженные двумя индексами. Первый индекс - номер строки, второй - номер столбца, на пересечении которых находится элемент матрицы.
+
+    \item Множество всех матриц, размера $m \times n$, обозначается \it{M}.
+
+    \item Матрица размера $1 \times n$ называется матрицей строкой.
+        $
+        \begin{bmatrix}
+            a_1 & a_2 & a_3
+        \end{bmatrix}
+        $
+
+    \item Матрица размера $m \times 1$ называется матрицей столбцом.
+        $
+        \begin{bmatrix}
+            a_1 \\
+            a_2 \\
+            a_3
+        \end{bmatrix}
+        $
+
+    \item Матрица в которой m = n называется квадратной матрицей, порядка n.
+
+    \item Матрица, все элементы которой равны нулю, называется нулевой и обозначается $\theta$.
+
+    \item Матрица, на главной диагонали которой стоят какие-то числа, а все остальные элементы равны нулю, называется диагональной.
+        $
+        \begin{bmatrix}
+            x_1 & 0 & 0 \\
+            0 & x_2 & 0 \\
+            0 & 0 & x_3
+        \end{bmatrix}
+        % \caption{диагональная матрица}
+        $
+
+    \item Матрица, на главной диагонали которой стоят единицы, обозначается буквой I(E) и называется единичной матрицей.
+
+        $
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        $
+
+\end{itemize}
+
+\section{Арифметические операции над матрицами}
+Операции сложения и умножения на число называются линейными операциями.
+\section{Сложение матриц}
+\begin{gather*}
+    A \in M_{m \times n}, B \in M_{m \times n} \\
+    A + B = C,  C \in M_{m \times n}
+\end{gather*}
+
+\section{Умножение матрицы на число}
+
+\begin{gather*}
+    A \in M_{m \times n}, \lambda - number \\
+    \lambda \cdot A = B \\
+    b_{ij} = a_{ij} \cdot \lambda
+\end{gather*}
+
+\section{Свойства линейных операций}
+
+\begin{enumerate}
+    \item Свойство коммутативности $A + B = B + A$
+
+    \item Свойство ассоциативности $(A + B) + C = A + (B + C)$
+
+    \item $(\alpha + \beta) \cdot A = \alpha \cdot A + \beta \cdot B$
+
+    \item $\alpha \cdot (A + B) = \alpha \cdot A + \alpha \cdot B$
+
+\end{enumerate}
+\section{Умножение матриц}
+
+Матрицы можно умножать, если их размеры согласованы(количество столбцов первой матрицы равно количеству строк второй матрицы). В противном случае операция умножения не определена.
+
+\begin{itemize}
+    \item Пусть
+
+        \begin{gather*}
+            A \in M_{m \times n}, B \in M_{n \times k} \\
+            A \cdot B = C, C \in M_{m \times k} \\
+            c_{ij} = a_{ij} * b_{ij} + a_{i2} * b_{i2} + \\
+        \end{gather*}
+
+        \begin{figure}[ht]
+            \centering
+            \incfig{matrix-multiplication}
+            \caption{matrix multiplication}
+            \label{fig:matrix-multiplication}
+        \end{figure}
+    \item \begin{falign*}
+            A =
+            \begin{bmatrix}
+                1 & 2 & 3 \\
+            \end{bmatrix},
+            B =
+            \begin{bmatrix}
+                4 \\
+                0 \\
+                2
+            \end{bmatrix} \\
+            A \cdot B = [ 10 ] \\
+            B \cdot A = \begin{bmatrix}
+                4 \\
+                0 \\
+                2
+            \end{bmatrix}
+            \cdot
+            \begin{bmatrix}
+                1 & 2 & 3
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+                4 & 8 & 12 \\
+                0 & 0 & 0 \\
+                2 & 4 & 6
+            \end{bmatrix}
+        \end{falign*}
+    \item \begin{falign*}
+            A =
+            \begin{bmatrix}
+                2 & 3 & -1 \\
+                4 & 0 & 1
+            \end{bmatrix},
+            B =
+            \begin{bmatrix}
+                3 \\
+                2 \\
+                1
+            \end{bmatrix}
+
+
+            A \times B =
+            \begin{bmatrix}
+                11 \\
+                13
+            \end{bmatrix} \\
+
+            B \times A \neq A \times B \\
+        \end{falign*}
+    \item \begin{falign*}
+            A =
+            \begin{bmatrix}
+                0 & 0 \\
+                1 & 1
+            \end{bmatrix},
+            B =
+            \begin{bmatrix}
+                1 & 1 \\
+                1 & -1
+            \end{bmatrix} \\
+            A \cdot B =
+            \begin{bmatrix}
+                0 & 0 \\
+                0 & 0
+            \end{bmatrix} \\
+            B \cdot A =
+            \begin{bmatrix}
+                1 & 1 \\
+                -1 & -1
+            \end{bmatrix}
+        \end{falign*}
+\end{itemize}
+\end{document}
